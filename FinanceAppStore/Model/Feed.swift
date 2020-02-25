@@ -38,7 +38,7 @@ struct AppInfo: Codable {
     let contentType: Contents
     let rights: Contents
     let title: Contents
-    let link: Contents
+    let link: [Contents]
     let id: Contents
     let artist: Contents
     let category: Contents
@@ -62,7 +62,18 @@ struct AppInfo: Codable {
 
 struct Contents: Codable {
     let label: String?
+    let duration: Duration?
     let attributes: Attributes?
+    
+    private enum CodingKeys: String, CodingKey {
+        case label
+        case duration = "im:duration"
+        case attributes
+    }
+}
+
+struct Duration: Codable {
+    let label: String
 }
 
 struct Attributes: Codable {
@@ -77,6 +88,7 @@ struct Attributes: Codable {
     let rel: String?
     let currency: String?
     let amount: String?
+    let assetType: String?
     
     private enum CodingKeys: String, CodingKey {
         case height
@@ -90,5 +102,6 @@ struct Attributes: Codable {
         case rel
         case currency
         case amount
+        case assetType = "im:assetType"
     }
 }

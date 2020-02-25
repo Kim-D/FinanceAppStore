@@ -35,22 +35,22 @@ class DetailViewController: UIViewController {
             iconImageView.layer.cornerRadius = 15.0
             iconImageView.layer.borderWidth = 1.0
             iconImageView.layer.borderColor = UIColor(red: 193.0/255.0, green: 193.0/255.0, blue: 193.0/255.0, alpha: 1.0).cgColor
-            NetworkHelper.networkHelper.downloadImageWithUrl(imageUrl: detailInfo.results[0].artworkUrl100) { (image) in
+            NetworkHelper.networkHelper.downloadImageWithUrl(imageUrl: detailInfo.results[0].artworkUrl100!) { (image) in
                 if let downloadImage = image {
                     iconImageView.image = downloadImage;
                 }
             }
             
             let title = topView.subviews[1] as! UILabel
-            title.text = detailInfo.results[0].trackCensoredName
+            title.text = detailInfo.results[0].trackCensoredName!
             
             let grade = topView.subviews[2] as! UILabel
             grade.layer.borderWidth = 1.0
             grade.layer.borderColor = UIColor.black.cgColor
-            grade.text = "  \(detailInfo.results[0].trackContentRating)  "
+            grade.text = "  \(detailInfo.results[0].trackContentRating!)  "
             
             let sellerName = topView.subviews[3] as! UILabel
-            sellerName.text = "\(detailInfo.results[0].sellerName)>"
+            sellerName.text = "\(detailInfo.results[0].sellerName!)>"
             
             
             
